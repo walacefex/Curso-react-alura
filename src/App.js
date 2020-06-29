@@ -2,11 +2,12 @@ import React, { Component, Fragment } from 'react';
 import 'materialize-css/dist/css/materialize.min.css';
 import './App.css';
 
-
 //components
 import Header  from './Header';
 import Tabela  from './Tabela';
 import Form    from './Formulario';
+import PopUp   from './Popup';
+
 
 class App extends Component {
 
@@ -45,10 +46,12 @@ class App extends Component {
         }),
       }
     );
+    PopUp.exibeMensagem("error", "Autor removido com sucesso")
   }
 
   escutadorDeSubmit = autor =>{
     this.setState({ autores: [...this.state.autores, autor]})
+    PopUp.exibeMensagem("success", "Autor Adicionado com sucesso")
   }
    
   render(){
@@ -56,6 +59,7 @@ class App extends Component {
       <Fragment>
         <Header />
         <section className="container mb-1">
+          <h1>Casa do Código</h1>
         <Tabela autores = { this.state.autores } removeAutor = { this.removeAutor }/>
         <Form escutadorDeSubmit = {this.escutadorDeSubmit}  />
         </section>
